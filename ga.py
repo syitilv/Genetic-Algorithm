@@ -42,12 +42,12 @@ def f(x1,x2): ##calculating the value of the f from x1 and x2
 def fitness(f): ##calculating the fitness of the chromosome
     return (-f)
 
-def ParentSelection(population): #choosing 2 parents from the population
+def ParentSelection(population): #choosing 2 parents from the population with tournament selection
     parents = random.choices(population, k=10)
     parents.sort(key=lambda parents:parents['fitness'],reverse=True)
     return parents[:2]
 
-def Crossover(parents): #crossover from parents making 2 children
+def Crossover(parents): #crossover from parents making 2 children with 70% probability
     probability = np.random.randint(0,100)
     child = []
     if (probability <= 70):
@@ -81,7 +81,7 @@ def Mutation(child): #mutation of the children with 1% probability
                 child[1]['genotype'][num2] = 0
     return child
 
-def Survivor(mutation,population): #new generation with steady state method
+def Survivor(mutation,population): #creating new generation with steady state method
     if (mutation != []):
         population.sort(key=lambda population:population['fitness'],reverse=False)
         size = len(mutation[0]['genotype'])
@@ -100,7 +100,7 @@ def Survivor(mutation,population): #new generation with steady state method
 
 generation = 0
 population = generatePopulation()
-while generation <= 300: #main function, will stop after reached 50th generation
+while generation <= 300: #main function, will stop after reached 300th generation
     print("Generasi ke-", generation)
     max = findMaxFitness(population)
     parents = ParentSelection(population)
