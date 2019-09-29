@@ -29,7 +29,7 @@ def generatePopulation(): ##generate the first population
     return chromosomeList
 
 def findMaxFitness(population): ##find the chromosome that has the largest fitness
-    population.sort(key=lambda select:select['fitness'],reverse=True)
+    population.sort(key=lambda population:population['fitness'],reverse=True)
     max = population[0]['f']
     return max
 
@@ -55,10 +55,10 @@ def fitness(f): ##calculating the fitness of the chromosome
 
 def ParentSelection(population): #choosing 2 parents from the population
     parents = random.choices(population, k=10)
-    parents.sort(key=lambda select:select['fitness'],reverse=True)
+    parents.sort(key=lambda parents:parents['fitness'],reverse=True)
     return parents[:2]
 
-def Crossover(parents): #crossover from parents into 2 children
+def Crossover(parents): #crossover from parents making 2 children
     child = []
     infoChild = {}
     point = np.random.randint(1,len(parents[0]['genotype']))
@@ -88,7 +88,7 @@ def Survivor(mutation,population): #new generation with steady state method
     print("INI POPULASI SEBELUM SORT FITNESS")
     print(population)
     print("")
-    population.sort(key=lambda select:select['fitness'],reverse=False)
+    population.sort(key=lambda population:population['fitness'],reverse=False)
     print("INI POPULASI SETELAH SORT FITNESS")
     print(population)
     print("")
@@ -115,7 +115,7 @@ def Survivor(mutation,population): #new generation with steady state method
 
 generation = 0
 population = generatePopulation()
-while generation <= 50: #main function, will stop after reached 100th generation
+while generation <= 50: #main function, will stop after reached 50th generation
     print("Generasi ke-", generation)
     print("POPULASI")
     print(population)
